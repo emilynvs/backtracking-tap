@@ -1,0 +1,21 @@
+{
+  "disciplinas": [
+    {"nome": "Banco de Dados", "prof": "Ana", "aulas": 2, "tipo": "Qualquer"},
+    {"nome": "Algoritmos", "prof": "Carlos", "aulas": 2, "tipo": "Qualquer"},
+    {"nome": "Redes", "prof": "Ana", "aulas": 2, "tipo": "Laboratorio"},
+    {"nome": "Engenharia de Software", "prof": "Mariana", "aulas": 2, "tipo": "Qualquer"},
+    {"nome": "Programação Web", "prof": "Carlos", "aulas": 2, "tipo": "Laboratorio"},
+    {"nome": "Sistema Operacional", "prof": "Pedro", "aulas": 2, "tipo": "Qualquer"}
+  ],
+  "disponibilidade_prof": {
+    "Ana": ["h1", "h2", "h3", "h4"],
+    "Carlos": ["h1", "h2", "h3", "h4"],
+    "Mariana": ["h1", "h3", "h5"],
+    "Pedro": ["h2", "h4", "h5"]
+  },
+  "salas": {
+    "Lab1": "Laboratorio",
+    "Lab2": "Laboratorio",
+    "Sala3": "Qualquer"
+  }
+}
