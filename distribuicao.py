@@ -19,9 +19,9 @@ for d in disciplinas:
             "id_aula": i + 1
         })
 salas_possiveis = list(salas.keys())
-
+print (lista_aulas)
 def validacao(aula, horario, sala, atribuicao):
-    print('OLHA A SALA', sala)
+
     prof = aula["prof"]
     disciplinaAula = aula["disciplina"]
 
@@ -46,3 +46,57 @@ def validacao(aula, horario, sala, atribuicao):
             return False
 
     return True
+
+def distribuir_aulas(indice, atribuicao):
+    if indice == len(lista_aulas):
+        return True
+
+    aula = lista_aulas[indice]
+
+    # cria uma forma de chamar todas as variáveis da validação
+    for horario in horarios_possiveis:
+        for sala in salas_possiveis:
+            if validacao(aula, horario, sala, atribuicao):
+                atribuicao.append({
+                    "disciplina": aula["disciplina"],
+                    "id_aula": aula["id_aula"],
+                    "prof": aula["prof"],
+                    "tipo": aula["tipo"],
+                    "horario": horario,
+                    "sala": sala
+                })
+                # passa por meio de recursividade a próxima aula
+                if distribuir_aulas(indice + 1, atribuicao):
+                    return True
+
+                # parte do backtracking que ocorre caso não passe na validacao
+                atribuicao.pop()
+
+    return False
+
+
+def mostrar_grade(atribuicao):
+
+    for horario in horarios_possiveis:
+        # aqui é uma forma de fazer mini listas criadas por horário, entao mostra as aulas que tem por horário
+        # se ta no h1 mostra as aulas que tem no h1
+        aulas_horario = [
+            aula for aula in atribuicao
+            if aula["horario"] == horario
+        ]
+
+        if aulas_horario:
+            print(f"\n{horario.upper()}:")
+
+            # Organiza as aulas pelo nome da sala
+            aulas_horario.sort(key=lambda aula: aula["sala"])
+
+            for aula in aulas_horario:
+                print(
+                    f"  Sala: {aula['sala']:<6} | "
+                    f"Disciplina: {aula['disciplina']:<25} | "
+                    f"Professor: {aula['prof']} | "
+                    f"Aula {aula['id_aula']}"
+                )
+
+    print("\nTotal de aulas alocadas:", len(atribuicao))
