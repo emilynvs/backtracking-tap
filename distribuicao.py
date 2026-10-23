@@ -19,9 +19,9 @@ for d in disciplinas:
             "id_aula": i + 1
         })
 salas_possiveis = list(salas.keys())
-
+print (lista_aulas)
 def validacao(aula, horario, sala, atribuicao):
-    print('OLHA A SALA', sala)
+
     prof = aula["prof"]
     disciplinaAula = aula["disciplina"]
 
@@ -46,3 +46,25 @@ def validacao(aula, horario, sala, atribuicao):
             return False
 
     return True
+
+def distribuir_aulas(indice, atribuicao):
+    if indice == len(lista_aulas):
+        return True
+
+    aula = lista_aulas[indice]
+
+    for horario in horarios_possiveis:
+        for sala in salas_possiveis:
+            if validacao(aula, horario, sala, atribuicao):
+                atribuicao.append({
+                    "disciplina": aula["disciplina"],
+                    "id_aula": aula["id_aula"],
+                    "prof": aula["prof"],
+                    "tipo": aula["tipo"],
+                    "horario": horario,
+                    "sala": sala
+                })
+
+                if distribuir_aulas(indice + 1, atribuicao):
+                    return True
+
