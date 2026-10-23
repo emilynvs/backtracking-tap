@@ -53,6 +53,7 @@ def distribuir_aulas(indice, atribuicao):
 
     aula = lista_aulas[indice]
 
+    # cria uma forma de chamar todas as variáveis da validação
     for horario in horarios_possiveis:
         for sala in salas_possiveis:
             if validacao(aula, horario, sala, atribuicao):
@@ -64,9 +65,15 @@ def distribuir_aulas(indice, atribuicao):
                     "horario": horario,
                     "sala": sala
                 })
-
+                # passa por meio de recursividade a próxima aula
                 if distribuir_aulas(indice + 1, atribuicao):
                     return True
+
+                # parte do backtracking que ocorre caso não passe na validacao
+                atribuicao.pop()
+
+    return False
+
 
 def mostrar_grade(atribuicao):
 
