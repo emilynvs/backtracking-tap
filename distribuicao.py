@@ -6,6 +6,7 @@ with open ('dados.json', encoding='utf-8') as json_file:
 disciplinas = dados["disciplinas"]
 disponibilidade_prof = dados["disponibilidade_prof"]
 salas = dados["salas"]
+bloqueios_salas = dados["bloqueios_salas"]
 horarios_possiveis = ["h1", "h2", "h3", "h4", "h5"]
 
 lista_aulas = []
@@ -28,6 +29,9 @@ def validacao(aula, horario, sala, atribuicao):
         return False;
 
     if aula["tipo"] == "Laboratorio" and salas[sala] != "Laboratorio":
+        return False;
+
+    if horario in bloqueios_salas.get(sala, []):
         return False;
 
     for atribui in atribuicao:

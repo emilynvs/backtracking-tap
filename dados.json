@@ -17,5 +17,10 @@
     "Lab1": "Laboratorio",
     "Lab2": "Laboratorio",
     "Sala3": "Qualquer"
+  },
+
+  "bloqueios_salas": {
+    "Lab1": ["h2"],
+    "Lab2": ["h3"]
   }
 }
