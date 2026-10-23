@@ -19,7 +19,6 @@ for d in disciplinas:
             "id_aula": i + 1
         })
 salas_possiveis = list(salas.keys())
-print (lista_aulas)
 def validacao(aula, horario, sala, atribuicao):
 
     prof = aula["prof"]
@@ -100,3 +99,11 @@ def mostrar_grade(atribuicao):
                 )
 
     print("\nTotal de aulas alocadas:", len(atribuicao))
+
+atribuicao = []
+resultado = distribuir_aulas(0, atribuicao)
+
+if resultado:
+    mostrar_grade(atribuicao)
+else:
+    print('Não consegui encontrar uma solução')
