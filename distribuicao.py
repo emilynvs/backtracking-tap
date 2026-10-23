@@ -68,3 +68,28 @@ def distribuir_aulas(indice, atribuicao):
                 if distribuir_aulas(indice + 1, atribuicao):
                     return True
 
+def mostrar_grade(atribuicao):
+
+    for horario in horarios_possiveis:
+        # aqui é uma forma de fazer mini listas criadas por horário, entao mostra as aulas que tem por horário
+        # se ta no h1 mostra as aulas que tem no h1
+        aulas_horario = [
+            aula for aula in atribuicao
+            if aula["horario"] == horario
+        ]
+
+        if aulas_horario:
+            print(f"\n{horario.upper()}:")
+
+            # Organiza as aulas pelo nome da sala
+            aulas_horario.sort(key=lambda aula: aula["sala"])
+
+            for aula in aulas_horario:
+                print(
+                    f"  Sala: {aula['sala']:<6} | "
+                    f"Disciplina: {aula['disciplina']:<25} | "
+                    f"Professor: {aula['prof']} | "
+                    f"Aula {aula['id_aula']}"
+                )
+
+    print("\nTotal de aulas alocadas:", len(atribuicao))
